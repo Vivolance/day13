@@ -47,8 +47,9 @@
                     <td data-th-text="${emp.postalCode}"></td>
                     <td>
                         <!-- Adding Buttons under Action header-->
-                        <a th:href="@{#}">Update</a>
-                        <a th:href="@{#}">Delete</a>
+                        <a th:href="@{/employees/updateEmployee/{email}(email=${emp.email})}">Update</a>
+                        <!-- {email} is a path variable, create a function that links here -->
+                        <a th:href="@{/employees/deleteEmployee/{email}(email=${emp.email})}">Delete</a>
                     </td>
                 </tr>
             </tbody>
