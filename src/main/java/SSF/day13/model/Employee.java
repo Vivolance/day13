@@ -18,11 +18,11 @@ public class Employee {
 
     //Different kind of annotations to ensure use enters their information synthetically correct
     @NotEmpty(message = "First name is a mandatory field")
-    @Size(min = 30, max = 100, message="First name must be between 30 to 100 chars")
+    @Size(min = 1, max = 100, message="First name must be between 1 to 100 chars")
     private String firstName;
 
     @NotEmpty(message = "Last name is a mandatory field")
-    @Size(min = 30, max = 100, message="Last name must be between 30 to 100 chars")
+    @Size(min = 1, max = 100, message="Last name must be between 1 to 100 chars")
     private String lastName;
 
     @Email(message = "Invalid Email format")

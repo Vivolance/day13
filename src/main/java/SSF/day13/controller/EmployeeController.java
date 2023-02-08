@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import SSF.day13.model.Employee;
 import SSF.day13.repository.EmployeeRepo;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/employees")
@@ -38,16 +39,18 @@ public class EmployeeController {
 
     @PostMapping("/addnew")
     //Object that you define in the form will be map to the employee object.
-    public String addEmployee(@ModelAttribute("employee") Employee employeeForm, Model model, BindingResult result) {
+    //Model model should be at the last
+    public String addEmployee(@Valid @ModelAttribute("employee") Employee employeeForm, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            return "/addnew";
+            return "employeeadd";
         }
 
         Boolean bresult = false;
         bresult = empRepo.save(employeeForm);
 
-        return "redirect:/home";
+        //Return to link in requestmapping first
+        return "redirect:/employees/home";
 
     }
     

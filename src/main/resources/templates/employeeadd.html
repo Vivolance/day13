@@ -19,25 +19,18 @@
     <!-- Use class="container" to ensure whatever is written does not flow out of your screen -->
     <div class="container">
         <!-- Display a form for client to fill in -->
-        <form method="POST" th:action="@{/addnew}" th:object="${employee}">
+        <form method="POST" th:action="@{/employees/addnew}" th:object="${employee}">
             <!-- Type in bs5-input and press enter to generate -->
             <!-- Ensure that your type is in accordance, add th:field to bind the inputs -->
             <div class="mb-3">
               <label for="firstName" class="form-label">First Name</label>
               <input type="text"
-                class="form-control" name="" id="" />
+                class="form-control" name="firstName" th:field="*{firstName}" />
             </div>
             <!-- this div tags handles any error -->
             <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" 
             th:errors="*{firstName}"></div>
 
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" name="firstName" th:field="*{firstName}" />
-              </div>
-            <!-- this div tags handles any error -->
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}"
-            th:errors="*{firstName}"></div>
 
               <div class="mb-3">
                 <label for="lastName" class="form-label">Last Name</label>
@@ -91,9 +84,12 @@
             <div class="alert alert-danger" th:if="${#fields.hasErrors('postalCode')}" 
             th:errors="*{postalCode}"></div>
 
-            <a type="submit" class="btn btn-primary">Submit</a>
+            <!-- For form use a button in order to submit -->
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <!-- adds a back button below submit to go back to home page -->
+    <a th:href="@{/employees/home}">Back to Employee List</a>
     
 </body>
 </html>
