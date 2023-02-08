@@ -1,5 +1,10 @@
 package SSF.day13.repository;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +16,9 @@ import SSF.day13.model.Employee;
 
 @Repository
 public class EmployeeRepo {
+    //Write to where you created the file directory
+    final String dirPath = "/Users/elsonchan/data";
+    final String filename = "employee.txt";
 
     private List<Employee> employees;
 
@@ -40,9 +48,17 @@ public class EmployeeRepo {
 
     }
 
-    public Boolean save(Employee employee) {
+    public Boolean save(Employee employee) throws FileNotFoundException{
 
         Boolean result = employees.add(employee);
+        //Save and writes a new employee created to a txt file in your director
+        File f = new File(dirPath + "/" + filename);
+        OutputStream os = new FileOutputStream(f, true);
+        PrintWriter pw = new PrintWriter(os);
+        pw.println(employee.toString());
+        pw.flush();
+        pw.close();
+
         return result;
     }
 
